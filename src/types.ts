@@ -1,4 +1,6 @@
+import { ReactNode } from 'react';
+
 export type AccordionData = {
   punchline: string;
-  setup: string;
+  setup: ReactNode;
 };
