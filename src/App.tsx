@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import Accordion from './components/Accordion';
 
 function App() {
+  const [jokes, setJokess] = useState([]);
+
+  const fetchData = () => {
+    fetch("https://official-joke-api.appspot.com/jokes/ten")
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        setJokess(data);
+      })
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className='container'>
+      <h1>Random Punchlines</h1>
+      <Accordion items={jokes} />
+    </main>
   );
 }
 
