@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { AccordionData } from '../types';
 import AccordionItem from './AccordionItem';
-import '../sass/Accordion.scss';
+
+import styled from 'styled-components';
+
+const AccordionWrapper = styled.ul`
+    list-style: none;
+    margin: 0;
+    padding: 0;
+`;
 
 function Accordion({ items }: { items: Array<AccordionData> }) {
   const [currentIdx, setCurrentIdx] = useState(-1);
@@ -10,7 +17,7 @@ function Accordion({ items }: { items: Array<AccordionData> }) {
   };
 
   return (
-    <ul className="accordion fade-in">
+    <AccordionWrapper className="accordion">
       {items.map((item, idx) => (
         <AccordionItem
           key={idx}
@@ -19,7 +26,7 @@ function Accordion({ items }: { items: Array<AccordionData> }) {
           btnOnClick={() => btnOnClick(idx)}
         />
       ))}
-    </ul>
+    </AccordionWrapper>
   );
 }
 

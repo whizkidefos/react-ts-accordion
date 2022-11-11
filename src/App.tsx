@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Accordion from './components/Accordion';
+
+import GlobalStyle from './styles/global';
 
 function App() {
   const [jokes, setJokess] = useState([]);
@@ -19,10 +21,13 @@ function App() {
   }, [])
 
   return (
-    <main className='container'>
-      <h1>Random Punchlines</h1>
-      <Accordion items={jokes} />
-    </main>
+    <>
+      <GlobalStyle/>
+      <main className='container'>
+        <h1>Random Punchlines</h1>
+        <Accordion items={jokes} />
+      </main>
+    </>
   );
 }
 

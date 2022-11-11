@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { AccordionData } from '../types';
 import { getRefValue } from '../lib/hooks';
-import '../sass/AccordionItem.scss';
+
+import AccordionList from '../styles/accordionItem';
 
 function AccordionItem({
     data, isOpen, btnOnClick, }: 
@@ -22,18 +23,21 @@ function AccordionItem({
     }, [isOpen]);
 
   return (
-     <li className={`accordion-item ${isOpen ? 'active' : ''}`}>
-      <h2 className="accordion-item-title">
-        <button className="accordion-item-btn" onClick={btnOnClick}>
-          {data.punchline}
-        </button>
-      </h2>
-      <div className="accordion-item-container" style={{ height }}>
-        <div ref={contentRef} className="accordion-item-content">
-          {data.setup}
+     <>
+      <AccordionList />
+      <li className={`accordion-item ${isOpen ? 'active' : ''}`}>
+        <h2 className="accordion-item-title">
+          <button className="accordion-item-btn" onClick={btnOnClick}>
+            {data.punchline}
+          </button>
+        </h2>
+        <div className="accordion-item-container" style={{ height }}>
+          <div ref={contentRef} className="accordion-item-content">
+            {data.setup}
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+     </>
   );
 }
 
